@@ -10,7 +10,8 @@
 <body>
     <div class="card">
         <div class="search">
-            <input type="text" placeholder="enter city" spellcheck="false">
+            <input type="text" placeholder="enter city" spellcheck="false" list="cities">
+            <datalist id="cities"></datalist>
             <button><img src="SourceImg/images/search.png"></button>
             
         </div>
@@ -37,7 +38,25 @@
             </div>
         </div>
     </div>
+    <script>
+        fetch('https://raw.githubusercontent.com/lmfmaier/cities-json/refs/heads/master/cities500.json')
+        .then(res => res.json())
+        .then(data => handler(data))
+
+        function handler(data) {
+       
+            const dataList = document.querySelector('#cities');
+    
+            data.forEach(arrayObject => {
+            const option = document.createElement('option');
+            option.value = arrayObject.name;
+            dataList.appendChild(option);
+        
+        });
+        }
+        </script>
     <script src="weather-scipt.js"></script>
+
     <script>
        
     </script>
